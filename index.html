@@ -18,43 +18,49 @@
     </div>
 
     <script>
-        // Updated JSON data
+        // Updated JSON data with course lists for hover information
         const jsonData = [
             {
                 "school": "Ben Franklin MS",
                 "implementedCourses": 3,
                 "totalCourses": 3,
-                "percentage": 100
+                "percentage": 100,
+                "courseList": "Science 6, Life Science, Earth Science"
             },
             {
                 "school": "CBE MS",
                 "implementedCourses": 3,
                 "totalCourses": 3,
-                "percentage": 100
+                "percentage": 100,
+                "courseList": "Science 6, Life Science, Earth Science"
             },
             {
                 "school": "Discovery MS",
                 "implementedCourses": 3,
                 "totalCourses": 3,
-                "percentage": 100
+                "percentage": 100,
+                "courseList": "Science 6, Life Science, Earth Science"
             },
             {
                 "school": "North HS",
                 "implementedCourses": 2,
                 "totalCourses": 11,
-                "percentage": 18
+                "percentage": 18,
+                "courseList": "Physical Science, Environmental Science"
             },
             {
                 "school": "South HS",
                 "implementedCourses": 2,
                 "totalCourses": 10,
-                "percentage": 20
+                "percentage": 20,
+                "courseList": "Physical Science, Environmental Science"
             },
             {
                 "school": "Davies HS",
                 "implementedCourses": 10,
                 "totalCourses": 11,
-                "percentage": 90
+                "percentage": 90,
+                "courseList": "Physical Science, Biology, Environmental Science, Forensics, Chemistry, Physics, Anatomy, AP Biology, AP Physics 1, AP Physics Mechanics"
             }
         ];
 
@@ -81,6 +87,7 @@
         // Create a grouped bar chart for Implemented vs. Total Courses
         const implementedCourses = jsonData.map(row => row.implementedCourses);
         const totalCourses = jsonData.map(row => row.totalCourses);
+        const courseLists = jsonData.map(row => row.courseList);
 
         const chart2Data = [
             {
@@ -88,7 +95,10 @@
                 y: implementedCourses,
                 name: 'Implemented Courses',
                 type: 'bar',
-                marker: { color: 'green' }
+                marker: { color: 'green' },
+                text: courseLists,  // Adding the course list for hover
+                hoverinfo: 'text',  // Show only the text on hover
+                hovertext: courseLists  // Custom hover text
             },
             {
                 x: schools,
