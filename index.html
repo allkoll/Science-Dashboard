@@ -15,11 +15,13 @@
         body {
             background-color: #bababa; /* Background color */
             font-family: 'Open Sans', sans-serif; /* Apply Open Sans to body text */
+            margin: 0;
+            padding: 0;
         }
         .container {
             max-width: 1000px;
             margin: auto;
-            padding: 60px 40px; /* Increased padding for a more open feel */
+            padding: 60px 20px; /* Adjusted padding */
             background-color: #ffffff; /* White background for content */
             border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -49,8 +51,7 @@
                 font-size: 14px;
             }
             #chart1, #chart2 {
-                width: 100%;
-                height: auto;
+                height: 300px; /* Reduce chart height on smaller screens */
             }
         }
     </style>
