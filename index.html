@@ -9,24 +9,24 @@
     <link rel="icon" href="path_to_your_favicon.ico" type="image/x-icon"> <!-- Add your custom favicon -->
     <style>
         body {
-            background: linear-gradient(to right, #e0f7fa, #e1bee7); /* Gradient background */
+            background-color: #bababa; /* Background color */
             font-family: 'Arial, sans-serif';
         }
         .container {
             max-width: 1000px;
             margin: auto;
-            padding: 20px;
+            padding: 40px 20px;
+            background-color: #ffffff; /* White background for content */
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1, .lead {
             text-align: center;
+            color: #333;
         }
         #chart1, #chart2 {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
             margin-top: 40px;
-            height: 400px; /* Increase height for better layout */
+            height: 450px; /* More height for better layout */
         }
         @media (max-width: 768px) {
             #chart1, #chart2 {
@@ -41,7 +41,6 @@
 </head>
 <body>
     <div class="container">
-        <img src="path_to_your_logo.png" alt="School Logo" style="height: 80px; display: block; margin: 0 auto;">
         <h1 class="mt-5">Science Dashboard</h1>
         <p class="lead">Displaying data from the Science Dashboard as interactive charts.</p>
         
@@ -58,48 +57,55 @@
                 "implementedCourses": 3,
                 "totalCourses": 3,
                 "percentage": 100,
-                "courseList": "Science 6, Life Science, Earth Science"
+                "courseList": "Science 6, Life Science, Earth Science",
+                "color": "#0e4f98" /* Ben Franklin and North Color */
             },
             {
                 "school": "CBE MS",
                 "implementedCourses": 3,
                 "totalCourses": 3,
                 "percentage": 100,
-                "courseList": "Science 6, Life Science, Earth Science"
+                "courseList": "Science 6, Life Science, Earth Science",
+                "color": "#f7d55b" /* CBE and South Color */
             },
             {
                 "school": "Discovery MS",
                 "implementedCourses": 3,
                 "totalCourses": 3,
                 "percentage": 100,
-                "courseList": "Science 6, Life Science, Earth Science"
+                "courseList": "Science 6, Life Science, Earth Science",
+                "color": "#a8222b" /* Davies and Discovery Color */
             },
             {
                 "school": "North HS",
                 "implementedCourses": 2,
                 "totalCourses": 11,
                 "percentage": 18,
-                "courseList": "Physical Science, Environmental Science"
+                "courseList": "Physical Science, Environmental Science",
+                "color": "#0e4f98" /* Ben Franklin and North Color */
             },
             {
                 "school": "South HS",
                 "implementedCourses": 2,
                 "totalCourses": 10,
                 "percentage": 20,
-                "courseList": "Physical Science, Environmental Science"
+                "courseList": "Physical Science, Environmental Science",
+                "color": "#f7d55b" /* CBE and South Color */
             },
             {
                 "school": "Davies HS",
                 "implementedCourses": 10,
                 "totalCourses": 11,
                 "percentage": 90,
-                "courseList": "Physical Science, Biology, Environmental Science, Forensics, Chemistry, Physics, Anatomy, AP Biology, AP Physics 1, AP Physics Mechanics"
+                "courseList": "Physical Science, Biology, Environmental Science, Forensics, Chemistry, Physics, Anatomy, AP Biology, AP Physics 1, AP Physics Mechanics",
+                "color": "#a8222b" /* Davies and Discovery Color */
             }
         ];
 
         // Extract data for the first chart (EBR Implementation Percentages)
         const schools = jsonData.map(row => row.school);
         const percentages = jsonData.map(row => row.percentage);
+        const colors = jsonData.map(row => row.color);
 
         // Create a bar chart for EBR Implementation Percentage
         const chart1Data = [{
@@ -107,7 +113,7 @@
             y: percentages,
             type: 'bar',
             marker: {
-                color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+                color: colors, /* Use custom colors */
                 line: {
                     color: '#333',
                     width: 1.5
@@ -120,7 +126,7 @@
                 text: 'EBR Implementation Percentages by School',
                 font: {
                     family: 'Arial, sans-serif',
-                    size: 20, /* Reduced font size */
+                    size: 20,
                     color: '#333'
                 }
             },
@@ -128,7 +134,7 @@
             yaxis: { title: 'Implementation Percentage', automargin: true },
             font: {
                 family: 'Arial, sans-serif',
-                size: 12, /* Reduced font size */
+                size: 12,
                 color: '#333'
             },
             transition: {
@@ -151,7 +157,7 @@
                 name: 'Implemented Courses',
                 type: 'bar',
                 marker: {
-                    color: 'green'
+                    color: colors /* Use custom colors */
                 },
                 text: courseLists,
                 hoverinfo: 'text',
@@ -163,7 +169,7 @@
                 name: 'Total Courses',
                 type: 'bar',
                 marker: {
-                    color: 'orange'
+                    color: '#999999' /* Neutral color for total courses */
                 }
             }
         ];
@@ -173,7 +179,7 @@
                 text: 'Implemented vs. Total Courses by School',
                 font: {
                     family: 'Arial, sans-serif',
-                    size: 20, /* Reduced font size */
+                    size: 20,
                     color: '#333'
                 }
             },
@@ -182,7 +188,7 @@
             barmode: 'group',
             font: {
                 family: 'Arial, sans-serif',
-                size: 12, /* Reduced font size */
+                size: 12,
                 color: '#333'
             },
             transition: {
