@@ -6,9 +6,41 @@
     <title>Science Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="icon" href="path_to_your_favicon.ico" type="image/x-icon"> <!-- Add your custom favicon -->
+    <style>
+        body {
+            background: linear-gradient(to right, #e0f7fa, #e1bee7); /* Gradient background */
+            font-family: 'Arial, sans-serif';
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, .lead {
+            text-align: center;
+        }
+        #chart1, #chart2 {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            #chart1, #chart2 {
+                width: 100%;
+                height: auto;
+            }
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
+        <img src="path_to_your_logo.png" alt="School Logo" style="height: 80px; display: block; margin: 0 auto;">
         <h1 class="mt-5">Science Dashboard</h1>
         <p class="lead">Displaying data from the Science Dashboard as interactive charts.</p>
         
@@ -73,13 +105,35 @@
             x: schools,
             y: percentages,
             type: 'bar',
-            marker: { color: 'blue' }
+            marker: {
+                color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+                line: {
+                    color: '#333',
+                    width: 1.5
+                }
+            }
         }];
 
         const chart1Layout = {
-            title: 'EBR Implementation Percentages by School',
+            title: {
+                text: 'EBR Implementation Percentages by School',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 24,
+                    color: '#333'
+                }
+            },
             xaxis: { title: 'School' },
-            yaxis: { title: 'Implementation Percentage' }
+            yaxis: { title: 'Implementation Percentage' },
+            font: {
+                family: 'Arial, sans-serif',
+                size: 14,
+                color: '#333'
+            },
+            transition: {
+                duration: 500,
+                easing: 'cubic-in-out'
+            }
         };
 
         Plotly.newPlot('chart1', chart1Data, chart1Layout);
@@ -95,25 +149,45 @@
                 y: implementedCourses,
                 name: 'Implemented Courses',
                 type: 'bar',
-                marker: { color: 'green' },
-                text: courseLists,  // Adding the course list for hover
-                hoverinfo: 'text',  // Show only the text on hover
-                hovertext: courseLists  // Custom hover text
+                marker: {
+                    color: 'green'
+                },
+                text: courseLists,
+                hoverinfo: 'text',
+                hovertext: courseLists
             },
             {
                 x: schools,
                 y: totalCourses,
                 name: 'Total Courses',
                 type: 'bar',
-                marker: { color: 'orange' }
+                marker: {
+                    color: 'orange'
+                }
             }
         ];
 
         const chart2Layout = {
-            title: 'Implemented vs. Total Courses by School',
+            title: {
+                text: 'Implemented vs. Total Courses by School',
+                font: {
+                    family: 'Arial, sans-serif',
+                    size: 24,
+                    color: '#333'
+                }
+            },
             xaxis: { title: 'School' },
             yaxis: { title: 'Number of Courses' },
-            barmode: 'group'
+            barmode: 'group',
+            font: {
+                family: 'Arial, sans-serif',
+                size: 14,
+                color: '#333'
+            },
+            transition: {
+                duration: 500,
+                easing: 'cubic-in-out'
+            }
         };
 
         Plotly.newPlot('chart2', chart2Data, chart2Layout);
