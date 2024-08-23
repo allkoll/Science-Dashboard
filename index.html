@@ -22,37 +22,39 @@
         const jsonData = [
             {
                 "school": "Ben Franklin MS",
-                "percentage": 100,
-                "courses": ["Science 6", "Life Science", "Earth Science"]
+                "implementedCourses": 3,
+                "totalCourses": 3,
+                "percentage": 100
             },
             {
                 "school": "CBE MS",
-                "percentage": 100,
-                "courses": ["Science 6", "Life Science", "Earth Science"]
+                "implementedCourses": 3,
+                "totalCourses": 3,
+                "percentage": 100
             },
             {
                 "school": "Discovery MS",
-                "percentage": 100,
-                "courses": ["Science 6", "Life Science", "Earth Science"]
+                "implementedCourses": 3,
+                "totalCourses": 3,
+                "percentage": 100
             },
             {
                 "school": "North HS",
-                "percentage": 18,
-                "courses": ["Physical Science", "Environmental Science"]
+                "implementedCourses": 2,
+                "totalCourses": 11,
+                "percentage": 18
             },
             {
                 "school": "South HS",
-                "percentage": 20,
-                "courses": ["Physical Science", "Environmental Science"]
+                "implementedCourses": 2,
+                "totalCourses": 10,
+                "percentage": 20
             },
             {
                 "school": "Davies HS",
-                "percentage": 90,
-                "courses": [
-                    "Physical Science", "Biology", "Environmental Science",
-                    "Forensics", "Chemistry", "Physics", "Anatomy",
-                    "AP Biology", "AP Physics 1", "AP Physics Mechanics"
-                ]
+                "implementedCourses": 10,
+                "totalCourses": 11,
+                "percentage": 90
             }
         ];
 
@@ -60,7 +62,7 @@
         const schools = jsonData.map(row => row.school);
         const percentages = jsonData.map(row => row.percentage);
 
-        // Create a bar chart
+        // Create a bar chart for EBR Implementation Percentage
         const chart1Data = [{
             x: schools,
             y: percentages,
@@ -76,26 +78,36 @@
 
         Plotly.newPlot('chart1', chart1Data, chart1Layout);
 
-        // Create a second chart (Number of Courses Implemented)
-        const courseCounts = jsonData.map(row => row.courses.length);
+        // Create a grouped bar chart for Implemented vs. Total Courses
+        const implementedCourses = jsonData.map(row => row.implementedCourses);
+        const totalCourses = jsonData.map(row => row.totalCourses);
 
-        const chart2Data = [{
-            x: schools,
-            y: courseCounts,
-            type: 'bar',
-            marker: { color: 'green' }
-        }];
+        const chart2Data = [
+            {
+                x: schools,
+                y: implementedCourses,
+                name: 'Implemented Courses',
+                type: 'bar',
+                marker: { color: 'green' }
+            },
+            {
+                x: schools,
+                y: totalCourses,
+                name: 'Total Courses',
+                type: 'bar',
+                marker: { color: 'orange' }
+            }
+        ];
 
         const chart2Layout = {
-            title: 'Number of Courses Implemented by School',
+            title: 'Implemented vs. Total Courses by School',
             xaxis: { title: 'School' },
-            yaxis: { title: 'Number of Courses' }
+            yaxis: { title: 'Number of Courses' },
+            barmode: 'group'
         };
 
         Plotly.newPlot('chart2', chart2Data, chart2Layout);
 
-        // Optionally, you could create a third chart to list the courses for each school
-        // or display them in another format (like a detailed list).
     </script>
 </body>
 </html>
