@@ -19,7 +19,7 @@
         .container {
             max-width: 1000px;
             margin: auto;
-            padding: 40px 20px;
+            padding: 60px 40px; /* Increased padding for a more open feel */
             background-color: #ffffff; /* White background for content */
             border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,12 +39,18 @@
             height: 450px; /* More height for better layout */
         }
         @media (max-width: 768px) {
-            #chart1, #chart2 {
-                width: 100%;
-                height: auto;
+            .container {
+                padding: 20px 10px;
             }
             h1 {
                 font-size: 24px;
+            }
+            .lead {
+                font-size: 14px;
+            }
+            #chart1, #chart2 {
+                width: 100%;
+                height: auto;
             }
         }
     </style>
@@ -128,6 +134,15 @@
                     color: '#333',
                     width: 1.5
                 }
+            },
+            hoverinfo: 'x+y', // Show both the school name and percentage
+            hoverlabel: {
+                bgcolor: '#333',
+                font: {
+                    family: 'Open Sans',
+                    size: 14,
+                    color: '#fff'
+                }
             }
         }];
 
@@ -147,6 +162,22 @@
                 size: 12,
                 color: '#333'
             },
+            annotations: [{
+                text: 'Highest implementation at 100%',
+                x: 'Ben Franklin MS',
+                y: 100,
+                xanchor: 'center',
+                yanchor: 'bottom',
+                showarrow: true,
+                arrowhead: 7,
+                ax: 0,
+                ay: -40,
+                font: {
+                    family: 'Open Sans',
+                    size: 12,
+                    color: '#333'
+                }
+            }],
             transition: {
                 duration: 500,
                 easing: 'cubic-in-out'
@@ -171,7 +202,15 @@
                 },
                 text: courseLists,
                 hoverinfo: 'text',
-                hovertext: courseLists
+                hovertext: courseLists,
+                hoverlabel: {
+                    bgcolor: '#333',
+                    font: {
+                        family: 'Open Sans',
+                        size: 14,
+                        color: '#fff'
+                    }
+                }
             },
             {
                 x: schools,
@@ -179,7 +218,8 @@
                 name: 'Total Courses',
                 type: 'bar',
                 marker: {
-                    color: '#999999' /* Neutral color for total courses */
+                    color: '#cccccc', /* Neutral color for total courses */
+                    opacity: 0.7
                 }
             }
         ];
