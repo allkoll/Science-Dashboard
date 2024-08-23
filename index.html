@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.2/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Science Dashboard</h1>
+        <p class="lead">This dashboard displays data from the Science Dashboard Excel file.</p>
+        
+        <!-- File Upload Input -->
+        <input type="file" id="upload" class="form-control" />
+        
+        <!-- Placeholder for Data Table -->
+        <div id="data-table" class="mt-3"></div>
+    </div>
+
+    <script>
+        // Event listener for file upload
+        document.getElementById('upload').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                // Read the Excel file as an array buffer
+                const data = new Uint8Array(event.target.result);
+                // Parse the Excel file using SheetJS
+                const workbook = XLSX.read(data, { type: 'array' });
+                // Get the first sheet
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                // Convert the sheet to JSON format
+                const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+                // Create an HTML table from the JSON data
+                let html = '<table class="table table-striped">';
+                jsonData.forEach((row) => {
+                    html += '<tr>';
+                    row.forEach((cell) => {
+                        html += `<td>${cell}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                html += '</table>';
+                // Display the table in the placeholder div
+                document.getElementById('data-table').innerHTML = html;
+            };
+            reader.readAsArrayBuffer(e.target.files[0]); // Read the uploaded file
+        });
+    </script>
+</body>
+</html>
