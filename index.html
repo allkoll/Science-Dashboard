@@ -26,6 +26,7 @@
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-top: 40px;
+            height: 400px; /* Increase height for better layout */
         }
         @media (max-width: 768px) {
             #chart1, #chart2 {
@@ -119,15 +120,15 @@
                 text: 'EBR Implementation Percentages by School',
                 font: {
                     family: 'Arial, sans-serif',
-                    size: 24,
+                    size: 20, /* Reduced font size */
                     color: '#333'
                 }
             },
-            xaxis: { title: 'School' },
-            yaxis: { title: 'Implementation Percentage' },
+            xaxis: { title: 'School', automargin: true },
+            yaxis: { title: 'Implementation Percentage', automargin: true },
             font: {
                 family: 'Arial, sans-serif',
-                size: 14,
+                size: 12, /* Reduced font size */
                 color: '#333'
             },
             transition: {
@@ -172,16 +173,16 @@
                 text: 'Implemented vs. Total Courses by School',
                 font: {
                     family: 'Arial, sans-serif',
-                    size: 24,
+                    size: 20, /* Reduced font size */
                     color: '#333'
                 }
             },
-            xaxis: { title: 'School' },
-            yaxis: { title: 'Number of Courses' },
+            xaxis: { title: 'School', automargin: true },
+            yaxis: { title: 'Number of Courses', automargin: true },
             barmode: 'group',
             font: {
                 family: 'Arial, sans-serif',
-                size: 14,
+                size: 12, /* Reduced font size */
                 color: '#333'
             },
             transition: {
