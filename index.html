@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Science Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1 class="mt-5">Science Dashboard</h1>
-        <p class="lead">Automatically displaying data from the Science Dashboard.</p>
+        <p class="lead">Automatically displaying data from the Science Dashboard as interactive charts.</p>
         
-        <!-- Placeholder for Data Table -->
-        <div id="data-table" class="mt-3"></div>
+        <!-- Placeholder for Graphs -->
+        <div id="chart1" class="mt-3"></div>
+        <div id="chart2" class="mt-3"></div>
     </div>
 
     <script>
-        // JSON data from the provided file
+        // JSON data from your file
         const jsonData = [
             {"Fargo Public Schools Science Dashboard": "EBR Implementation Percentages for Courses", "": ""},
             {"Fargo Public Schools Science Dashboard": "School", "": "Implementation Percentage"},
@@ -25,29 +27,48 @@
             {"Fargo Public Schools Science Dashboard": "Discovery MS", "": "100"},
             {"Fargo Public Schools Science Dashboard": "North HS", "": "18"},
             {"Fargo Public Schools Science Dashboard": "South HS", "": "20"},
-            {"Fargo Public Schools Science Dashboard": "Davies HS", "": "90"},
-            {"Fargo Public Schools Science Dashboard": "Coures Implementing at Middle School", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Ben Franklin", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Science 6", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Life Science", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Earth Science", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Courses Implementing at High School", "": ""},
-            {"Fargo Public Schools Science Dashboard": "North", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Physical Science", "": ""},
-            {"Fargo Public Schools Science Dashboard": "Environmental Science", "": ""}
+            {"Fargo Public Schools Science Dashboard": "Davies HS", "": "90"}
         ];
 
-        // Create an HTML table from the JSON data
-        let html = '<table class="table table-striped">';
-        jsonData.forEach((row) => {
-            html += '<tr>';
-            html += `<td>${row["Fargo Public Schools Science Dashboard"]}</td>`;
-            html += `<td>${row[""]}</td>`;
-            html += '</tr>';
-        });
-        html += '</table>';
-        // Display the table in the placeholder div
-        document.getElementById('data-table').innerHTML = html;
+        // Extract data for the first chart (EBR Implementation Percentages)
+        const schools = jsonData.slice(2, 8).map(row => row["Fargo Public Schools Science Dashboard"]);
+        const percentages = jsonData.slice(2, 8).map(row => parseInt(row[""]));
+
+        // Create a bar chart
+        const chart1Data = [{
+            x: schools,
+            y: percentages,
+            type: 'bar',
+            marker: { color: 'blue' }
+        }];
+
+        const chart1Layout = {
+            title: 'EBR Implementation Percentages for Courses',
+            xaxis: { title: 'School' },
+            yaxis: { title: 'Implementation Percentage' }
+        };
+
+        Plotly.newPlot('chart1', chart1Data, chart1Layout);
+
+        // You can add another chart with a different data subset in a similar way
+        // For example, you could create pie charts, line charts, etc.
+        // Here's how to create a pie chart:
+
+        // Additional data extraction (if needed)
+        // const anotherData = ...;
+
+        // Example: Pie Chart (replace with actual data if needed)
+        const chart2Data = [{
+            values: percentages,
+            labels: schools,
+            type: 'pie'
+        }];
+
+        const chart2Layout = {
+            title: 'EBR Implementation Distribution',
+        };
+
+        Plotly.newPlot('chart2', chart2Data, chart2Layout);
     </script>
 </body>
 </html>
