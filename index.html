@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="icon" href="path_to_your_favicon.ico" type="image/x-icon"> <!-- Add your custom favicon -->
+
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+
     <style>
         body {
             background-color: #bababa; /* Background color */
-            font-family: 'Arial, sans-serif';
+            font-family: 'Open Sans', sans-serif; /* Apply Open Sans to body text */
         }
         .container {
             max-width: 1000px;
@@ -20,9 +24,15 @@
             border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h1, .lead {
+        h1 {
             text-align: center;
             color: #333;
+            font-family: 'Montserrat', sans-serif; /* Apply Montserrat to the main title */
+        }
+        .lead {
+            text-align: center;
+            color: #333;
+            font-family: 'Open Sans', sans-serif; /* Apply Open Sans to subtitles */
         }
         #chart1, #chart2 {
             margin-top: 40px;
@@ -125,7 +135,7 @@
             title: {
                 text: 'EBR Implementation Percentages by School',
                 font: {
-                    family: 'Arial, sans-serif',
+                    family: 'Montserrat', /* Use Montserrat for chart titles */
                     size: 20,
                     color: '#333'
                 }
@@ -133,7 +143,7 @@
             xaxis: { title: 'School', automargin: true },
             yaxis: { title: 'Implementation Percentage', automargin: true },
             font: {
-                family: 'Arial, sans-serif',
+                family: 'Open Sans', /* Use Open Sans for axis labels */
                 size: 12,
                 color: '#333'
             },
@@ -178,7 +188,7 @@
             title: {
                 text: 'Implemented vs. Total Courses by School',
                 font: {
-                    family: 'Arial, sans-serif',
+                    family: 'Montserrat', /* Use Montserrat for chart titles */
                     size: 20,
                     color: '#333'
                 }
@@ -187,7 +197,7 @@
             yaxis: { title: 'Number of Courses', automargin: true },
             barmode: 'group',
             font: {
-                family: 'Arial, sans-serif',
+                family: 'Open Sans', /* Use Open Sans for axis labels */
                 size: 12,
                 color: '#333'
             },
