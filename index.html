@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1 class="mt-5">Science Dashboard</h1>
-        <p class="lead">Automatically displaying data from the Science Dashboard as interactive charts.</p>
+        <p class="lead">Displaying data from the Science Dashboard as interactive charts.</p>
         
         <!-- Placeholder for Graphs -->
         <div id="chart1" class="mt-3"></div>
@@ -18,21 +18,47 @@
     </div>
 
     <script>
-        // JSON data from your file
+        // Updated JSON data
         const jsonData = [
-            {"Fargo Public Schools Science Dashboard": "EBR Implementation Percentages for Courses", "": ""},
-            {"Fargo Public Schools Science Dashboard": "School", "": "Implementation Percentage"},
-            {"Fargo Public Schools Science Dashboard": "Ben Franklin MS", "": "100"},
-            {"Fargo Public Schools Science Dashboard": "CBE MS", "": "100"},
-            {"Fargo Public Schools Science Dashboard": "Discovery MS", "": "100"},
-            {"Fargo Public Schools Science Dashboard": "North HS", "": "18"},
-            {"Fargo Public Schools Science Dashboard": "South HS", "": "20"},
-            {"Fargo Public Schools Science Dashboard": "Davies HS", "": "90"}
+            {
+                "school": "Ben Franklin MS",
+                "percentage": 100,
+                "courses": ["Science 6", "Life Science", "Earth Science"]
+            },
+            {
+                "school": "CBE MS",
+                "percentage": 100,
+                "courses": ["Science 6", "Life Science", "Earth Science"]
+            },
+            {
+                "school": "Discovery MS",
+                "percentage": 100,
+                "courses": ["Science 6", "Life Science", "Earth Science"]
+            },
+            {
+                "school": "North HS",
+                "percentage": 18,
+                "courses": ["Physical Science", "Environmental Science"]
+            },
+            {
+                "school": "South HS",
+                "percentage": 20,
+                "courses": ["Physical Science", "Environmental Science"]
+            },
+            {
+                "school": "Davies HS",
+                "percentage": 90,
+                "courses": [
+                    "Physical Science", "Biology", "Environmental Science",
+                    "Forensics", "Chemistry", "Physics", "Anatomy",
+                    "AP Biology", "AP Physics 1", "AP Physics Mechanics"
+                ]
+            }
         ];
 
         // Extract data for the first chart (EBR Implementation Percentages)
-        const schools = jsonData.slice(2, 8).map(row => row["Fargo Public Schools Science Dashboard"]);
-        const percentages = jsonData.slice(2, 8).map(row => parseInt(row[""]));
+        const schools = jsonData.map(row => row.school);
+        const percentages = jsonData.map(row => row.percentage);
 
         // Create a bar chart
         const chart1Data = [{
@@ -43,32 +69,33 @@
         }];
 
         const chart1Layout = {
-            title: 'EBR Implementation Percentages for Courses',
+            title: 'EBR Implementation Percentages by School',
             xaxis: { title: 'School' },
             yaxis: { title: 'Implementation Percentage' }
         };
 
         Plotly.newPlot('chart1', chart1Data, chart1Layout);
 
-        // You can add another chart with a different data subset in a similar way
-        // For example, you could create pie charts, line charts, etc.
-        // Here's how to create a pie chart:
+        // Create a second chart (Number of Courses Implemented)
+        const courseCounts = jsonData.map(row => row.courses.length);
 
-        // Additional data extraction (if needed)
-        // const anotherData = ...;
-
-        // Example: Pie Chart (replace with actual data if needed)
         const chart2Data = [{
-            values: percentages,
-            labels: schools,
-            type: 'pie'
+            x: schools,
+            y: courseCounts,
+            type: 'bar',
+            marker: { color: 'green' }
         }];
 
         const chart2Layout = {
-            title: 'EBR Implementation Distribution',
+            title: 'Number of Courses Implemented by School',
+            xaxis: { title: 'School' },
+            yaxis: { title: 'Number of Courses' }
         };
 
         Plotly.newPlot('chart2', chart2Data, chart2Layout);
+
+        // Optionally, you could create a third chart to list the courses for each school
+        // or display them in another format (like a detailed list).
     </script>
 </body>
 </html>
